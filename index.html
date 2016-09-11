@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+  <body width="100%">
+
+    <div class="canvas" style="text-align: center; font-family:"Microsoft YaHei", "微软雅黑"">
+      <canvas id="newCanvas" width="900" height="900", style="width:100%; border:1px solid #d3d3d3;">
+        Does not support canvas
+      </canvas>
+    </div>
+    <p>
+      <button onclick="beginAnimation()">Animate!</button>
+    </p>
+  </body>
+
+  <script>
+    //常用变量
+    var canvas, cc, centerX, centerY,drawWidth, drawHeight, innerRadius, arcStep, frameRenderer, isAnimationFinished, lastFrameTime, categoryRadius;
+    var angleOffset = -Math.PI/2.0;
+    var sectionAngle = Math.PI/5.0;
+    var pieAngle = sectionAngle*7.0;
+    var data = {
+      name: ["CRM管理系统", "4A运维系统", "4A主机操作","应用金库管理日志","BOMC系统", "4A数据库操作","SSO单点登入"],
+      value: [6.3, 1.5, 1, 0.28, 0.15, 0.25, 0.5],
+      color: ["#d62e64", "#1b8cc7", "#4b6fb4", "#44b193", "#f2da65", "#9d4c99", "#d85e65"]
+    };
+    var ruler = ['0', '6,000,000', '12,000,000', '18,000,000', '24,000,000', '30,000,000', '36,000,000'];
+    var imagesSrcs = {imgCore: 'img-core.png', icn0: 'icn-0.png', icn1: 'icn-1.png', icn2: 'icn-2.png', icn3: 'icn-3.png', icn4: 'icn-4.png', icn5: 'icn-5.png', icn6: 'icn-6.png'};
+
+    //Animation parameters
+    //TODO: 处理动态fps
+    var fps = 60.0;
+    var animationDuration = {
+      core: 0.5,
+      coreWait: 0.1,
+      iconRing: 0.3,
+      iconWait: 0.1,
+      nameRing: 0.3,
+      nameWait: 0.1,
+      ruler: 0.6,
+      rulerText: 0.4
+    };
+    //Data animation
+    var sectionTimeInterval = 0.2; //不同section动画开始时差
+    var sectionTimeRemain = 0.6; // 时差结束后动画还要继续的时间
+    var sectionTime = sectionTimeInterval + sectionTimeRemain; //单个section动画总时间
+
+    var animStage = 0;
+    var frame = 0;
+
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    var isAnimationFinished = false;
+    var loadedImages;
+
+    //TODO: 处理Retina屏
+    window.onload = function(){
+      canvas = document.getElementById("newCanvas");
+      cc = canvas.getContext("2d");
+
+      centerX = canvas.width / 2.0;
+      centerY = canvas.height / 2.0;
+      drawWidth = canvas.width*0.8;
+      drawHeight = canvas.height*0.8;
+
+      loadImages(imagesSrcs, function(images) {
+        loadedImages = images;
+        beginAnimation();
+      });
+    };
+
+    function beginAnimation(){
+      frame = 0;
+      animStage = 0;
+      isAnimationFinished = false;
+      cc.clearRect(0, 0, canvas.width, canvas.height);
+      renderLoop();
+    }
+
+    function renderLoop(){
+      if (!isAnimationFinished) {
+        drawData();
+        frameRenderer = requestAnimationFrame(renderLoop);
+      }
+    }
+
+    //绘制数据动画帧
+    function drawData(){
+      cc.clearRect(0, 0, canvas.width, canvas.height);
+      //canvas 变量
+      innerRadius = 0.276*drawWidth; //原始 207
+      arcStep = 0.0294*drawWidth; //22
+
+      //绘制背景
+      cc.globalAlpha = 1;
+      cc.fillStyle = "#26273F";
+      cc.fillRect(0, 0, canvas.width, canvas.height);
+
+      if (animStage>0) {
+        if (animStage > 1) {
+          if (animStage > 2) {
+            var rulerProg;
+            if (animStage > 3) {
+              //绘制表格背景
+              if (animStage == 4) {
+                rulerProg = frame/(animationDuration.ruler * fps);
+              }else {
+                rulerProg = 1;
+              }
+              cc.beginPath();
+              var bgOuterR = innerRadius + 4*arcStep + arcStep/6.0;
+              var bgInnerR = innerRadius - 0.0162*drawWidth;
+              cc.arc(centerX, centerY, bgOuterR, pieAngle + angleOffset, pieAngle * (1-rulerProg) + angleOffset, true);
+              //cc.lineTo(centerX, centerY - bgInnerR);
+              cc.arc(centerX, centerY, bgInnerR, pieAngle * (1-rulerProg) + angleOffset, pieAngle + angleOffset, false);
+              cc.closePath();
+              cc.fillStyle = "#3f4a69"
+              cc.fill();
+              cc.save();
+            }
+
+
+
+            //绘制数据
+            var dataAngleStart = angleOffset;
+            for (var i = 0; i < data.value.length; i++) {
+              var dataAngleTo = dataAngleStart + sectionAngle;
+
+              if ((i+1)*sectionTimeInterval*fps + sectionTimeRemain*fps <= frame || animStage>3) {
+                //动画结束
+                var dataOuterR = innerRadius + data.value[i]*arcStep;
+                var dataInnerR = innerRadius;
+                cc.beginPath();
+                cc.arc(centerX, centerY, dataOuterR, dataAngleStart, dataAngleTo, false);
+                cc.arc(centerX, centerY, dataInnerR, dataAngleTo, dataAngleStart, true);
+                cc.closePath();
+                cc.fillStyle = data.color[i];
+                cc.fill();
+              }else if (i*sectionTimeInterval*fps > frame) {
+                //还没到这个section
+              }else{
+                //动画中
+                animProg = (frame - i*sectionTimeInterval*fps)/(sectionTime*fps);
+                curvedProg = Math.min(- Math.cos(animProg * Math.PI)/2.0 + 0.5, 1);
+                var dataOuterR = innerRadius + data.value[i]*arcStep  * curvedProg;
+                var dataInnerR = innerRadius;
+                cc.beginPath();
+                cc.arc(centerX, centerY, dataOuterR, dataAngleStart, dataAngleTo, false);
+                cc.arc(centerX, centerY, dataInnerR, dataAngleTo, dataAngleStart, true);
+                cc.closePath();
+                cc.fillStyle = data.color[i];
+                cc.fill();
+              }
+              dataAngleStart = dataAngleTo;
+            };
+            cc.save();
+
+            if (animStage>3) {
+              //绘制弧形刻度
+              for (var i = 1; i < 7; i++) {
+                cc.beginPath();
+                cc.arc(centerX, centerY, innerRadius + i*arcStep, pieAngle * (1-rulerProg) + angleOffset, pieAngle + angleOffset, false);
+                cc.lineWidth = 0.5;
+                cc.strokeStyle = "rgba(255,255,255,0.3)";
+                cc.stroke();
+              };
+              cc.save();
+
+              if (animStage > 4) {
+                //绘制刻度数字
+                var rulerTextProg = frame/(animationDuration.rulerText * fps);
+                cc.textAlign = 'right';
+                cc.fillStyle = 'rgba(255,255,255,0.5)';
+                cc.font = "110% STXihei";
+                for (var i = 0; i < ruler.length; i++) {
+                  reversedIdx = ruler.length - i;
+                  singleProg = 1/(ruler.length);
+                  cc.globalAlpha = rulerTextProg/(reversedIdx*singleProg);
+
+                  var rulerX = centerX - 0.02*drawWidth;
+                  var rulerY = centerY - (innerRadius + i*arcStep - 0.0067*drawWidth);
+                  cc.fillText(ruler[i], rulerX, rulerY);
+                };
+                cc.globalAlpha = 1;
+                cc.save();
+              }
+
+            }
+
+          }
+
+          if (animStage == 2) {
+            var prog = Math.min(frame / (animationDuration.iconRing * fps), 1);
+            cc.globalAlpha = prog;
+            nameRingOffset = (Math.cos(prog * Math.PI) + 1) * drawWidth * 0.004;
+          }else {
+            cc.globalAlpha = 1;
+          }
+          //类别名称背景
+          categoryRadius = 0.24*drawWidth - nameRingOffset;
+          var ringWidth = 0.04*drawWidth;
+          cc.beginPath();
+          cc.arc(centerX, centerY, categoryRadius, 0, Math.PI*2, false);
+          cc.strokeStyle = "#3B597C";
+          cc.lineWidth = ringWidth;
+          cc.stroke()
+          cc.save();
+
+          if (animStage > 2) {
+            //类别名称文字
+            cc.font = "86% STXihei";
+            cc.fillStyle = "#ffffff";
+            cc.textAlign = 'left';
+            if (animStage == 3) {
+              for (var i = 0; i < data.value.length; i++) {
+                text = [data.name[i]];
+                if ((i+1)*sectionTimeInterval*fps + sectionTimeRemain*fps <= frame || animStage>3) {
+                  //动画结束
+                  cc.fillTextCircle(text,centerX,centerY,0.23*drawWidth, i*sectionAngle);
+                }else if (i*sectionTimeInterval*fps > frame) {
+                  //还没到这个section
+                }else{
+                  //动画中
+                  cc.globalAlpha = (frame - i*sectionTimeInterval*fps)/(sectionTime*fps);
+                  cc.fillTextCircle(text,centerX,centerY,0.23*drawWidth, i*sectionAngle);
+                }
+                cc.globalAlpha = 1;
+              };
+            }else {
+              cc.fillTextCircle(data.name,centerX,centerY,0.23*drawWidth, 0);
+              cc.save();
+            }
+
+          }
+        }
+
+        //类别图标
+        var offset = 0;
+        if (animStage == 1) {
+          var prog = Math.min(frame / (animationDuration.iconRing * fps), 1);
+          cc.globalAlpha = prog;
+          iconOffset = (Math.cos(prog * Math.PI) + 1) * drawWidth * 0.006;
+        }else {
+          cc.globalAlpha = 1;
+        }
+        var iconOutRadius = Math.max(0.2 * drawWidth - iconOffset, 0);
+        var iconInnerRadius = Math.max(0.15333 * drawWidth - iconOffset,0);
+        var iconPadding = 0.004;
+        var iconWidth = 0.0333 * drawWidth;
+        var iconRadius = (iconOutRadius + iconInnerRadius + iconWidth)/2.0;
+        cc.fillStyle = "#537797";
+        for (var i = 0; i < 7; i++) {
+          var startAng = angleOffset + i*sectionAngle + iconPadding;
+          var endAng = angleOffset + (i + 1)*sectionAngle - 2*iconPadding;
+          cc.beginPath();
+          cc.arc(centerX, centerY, iconOutRadius, startAng, endAng, false);
+          cc.arc(centerX, centerY, iconInnerRadius, endAng, startAng, true);
+          cc.closePath();
+          cc.fill();
+          cc.save();
+
+          cc.translate(centerX,centerY);
+          cc.rotate((i + 0.5)*sectionAngle);
+          cc.drawImage(loadedImages['icn'+i], -iconWidth/2.0, - iconRadius, iconWidth, iconWidth);
+          cc.restore();
+        };
+      }
+
+      //中部的环
+      if (animStage == 0) {
+        var prog = frame /(animationDuration.core*fps);
+        cc.globalAlpha = Math.min(prog, 1);
+      }else {
+        cc.globalAlpha = 1;
+      }
+      var coreImgX = centerX - 0.51178*drawWidth;
+      var coreImgY = centerY - 0.3388*drawWidth;
+      var coreImgWidth = 0.64267*drawWidth;
+      var coreImgHeight = 0.4706*drawWidth;
+      cc.drawImage(loadedImages.imgCore, coreImgX, coreImgY, coreImgWidth, coreImgHeight);
+      cc.save();
+
+
+      //loop control
+      frame ++;
+      if (animStage == 0) {
+        //core circle shows up
+        if (frame > (animationDuration.core + animationDuration.coreWait)* fps) {
+          animStage ++;
+          frame = 0;
+        }
+
+      }else if (animStage == 1) {
+        //pop icon ring
+        if (frame > (animationDuration.iconRing + animationDuration.iconWait)* fps) {
+          animStage ++;
+          frame = 0;
+        }
+      }else if (animStage == 2) {
+        //pop name ring
+        if (frame > animationDuration.nameRing * fps) {
+          animStage ++;
+          frame = 0;
+        }
+      }else if (animStage == 3) {
+        //show data and icon/name
+        if (frame>(data.value.length + 1) * sectionTimeInterval*fps + sectionTimeRemain*fps) {
+          animStage ++
+          frame = 0;
+        }
+      }else if (animStage == 4) {
+        //show ruler and text
+        if (frame > animationDuration.ruler * fps) {
+          frame = 0;
+          animStage ++;
+        }
+      }else if (animStage == 5)
+      {
+        if (frame > animationDuration.rulerText*fps) {
+          isAnimationFinished = true;
+          window.cancelAnimationFrame(frameRenderer);//does not work
+          frameRenderer = 0;
+          frame = 0;
+        }
+      }
+    }
+
+    //图像载入
+    function loadImages(sources, callback) {
+        var images = {};
+        var loadedImageCount = 0;
+        var numImages = 0;
+        // get num of sources
+        for(var src in sources) {
+          numImages++;
+        }
+        for(var src in sources) {
+          images[src] = new Image();
+          images[src].onload = function() {
+            if(++loadedImageCount >= numImages) {
+              callback(images);
+            }
+          };
+          images[src].src = sources[src];
+        }
+      }
+
+    //圆形文字绘制（类别名称）
+    CanvasRenderingContext2D.prototype.fillTextCircle = function(names,x,y,radius,startRotation){
+      if (names.length < 2) {
+        data.textWidth = [];
+        data.charWidths = [];
+      }else {
+        data.textWidth = data.textWidth || [];
+        data.charWidths = data.charWidths || [];
+      }
+
+      for (var i = 0; i < names.length; i++) {
+        text = names[i];
+        if (data.textWidth.length< i + 1) {
+          //计算文字总宽度
+          data.textWidth[i] = this.measureText(text).width;
+          data.charWidths[i] = [];
+          //每个字的宽度
+          for (var j = 0; j < text.length; j++) {
+            data.charWidths[i].push(this.measureText(text[j]).width);
+          }
+        }
+
+        this.save();
+        this.translate(x,y);
+        this.rotate(startRotation + i * sectionAngle);
+        //文字宽度常数
+        var c = radius * 0.000035;
+        //每个section中第一个文字的起始角度
+        var accumulatedRotation = (sectionAngle - c * data.textWidth[i])/2.0;
+        for (var j = 0; j < text.length; j++) {
+          this.save();
+          if (j>0) {
+            accumulatedRotation += c * data.charWidths[i][j-1];
+          }
+          this.rotate(accumulatedRotation);
+          this.fillText(text[j], 0, -radius);
+          this.restore();
+        }
+        this.restore();
+      };
+    }
+  </script>
+</html>
