@@ -8,7 +8,7 @@
   <body width="100%">
 
     <div class="canvas" style="text-align: center; font-family:"Microsoft YaHei", "微软雅黑"">
-      <canvas id="newCanvas" width="900" height="900", style="width:100%; border:1px solid #d3d3d3;">
+      <canvas id="newCanvas" width="900" height="900", style="width:100%; max-width:900px; border:1px solid #d3d3d3;">
         Does not support canvas
       </canvas>
     </div>
@@ -351,7 +351,7 @@
 
     //圆形文字绘制（类别名称）
     CanvasRenderingContext2D.prototype.fillTextCircle = function(names,x,y,radius,startRotation){
-      if (names.length < 2) {
+      if (names.length < 2 || data.textWidth.length < 2) {
         data.textWidth = [];
         data.charWidths = [];
       }else {
