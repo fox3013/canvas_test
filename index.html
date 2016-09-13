@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-
+    <script src="curves.js"></script>
   </head>
   <body style="width:100%; background-color: #26273F;">
 
@@ -56,7 +56,7 @@
         animStartTime = Date.now();
       }
       var time = (Date.now() - animStartTime)/1000.0;
-      animationProgress = {finished:false};
+      animationProgress = {finished:true};
 
       for (var key in animScript) {
         var progress = -1;
@@ -79,21 +79,6 @@
         }
       }
     }
-
-    // var animationDuration = {
-    //   core: 0.5,
-    //   coreWait: 0.1,
-    //   iconRing: 0.3,
-    //   iconWait: 0.1,
-    //   nameRing: 0.3,
-    //   nameWait: 0,
-    //   ruler: 0.6,
-    //   rulerText: 0.4
-    // };
-    // //Data animation
-    // var sectionTimeInterval = 0.2; //不同section动画开始时差
-    // var sectionTimeRemain = 0.6; // 时差结束后动画还要继续的时间
-    // var sectionTime = sectionTimeInterval + sectionTimeRemain; //单个section动画总时间
 
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -183,6 +168,7 @@
         }else if (animationProgress[animationName] >= 0) {
           //动画中
           var animProg = animationProgress[animationName];
+          animProg = Curves.easeOutBack(animProg);
           curvedProg = Math.min(- Math.cos(animProg * Math.PI)/2.0 + 0.5, 1);
           var dataOuterR = innerRadius + data.value[i]*arcStep  * curvedProg;
           var dataInnerR = innerRadius;
@@ -275,7 +261,7 @@
         if (animationProgress[animationName] >= 0) {
           var prog = Math.min(animationProgress[animationName], 1);
           cc.globalAlpha = prog;
-          var iconOffset = -(Math.cos(prog * Math.PI) + 1) * drawWidth * 0.06;
+          var iconOffset = -(Math.cos(prog * Math.PI) + 1) * drawWidth * 0.006;
           var iconOutRadius = Math.max(0.2 * drawWidth - iconOffset, 0);
           var iconInnerRadius = Math.max(0.15333 * drawWidth - iconOffset,0);
           var iconPadding = 0.004;
