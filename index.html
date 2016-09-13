@@ -5,7 +5,7 @@
     <title></title>
 
   </head>
-  <body width="100%">
+  <body style="width:100%; background-color: #26273F;">
 
     <div class="canvas" style="text-align: center; font-family:"Microsoft YaHei", "微软雅黑"">
       <canvas id="newCanvas" width="900" height="900", style="width:100%; max-width:900px; border:1px solid #d3d3d3;">
@@ -23,6 +23,7 @@
     var angleOffset = -Math.PI/2.0;
     var sectionAngle = Math.PI/5.0;
     var pieAngle = sectionAngle*7.0;
+    //data
     var data = {
       name: ["CRM管理系统", "4A运维系统", "4A主机操作","应用金库管理日志","BOMC系统", "4A数据库操作","SSO单点登入"],
       value: [6.3, 1.5, 1, 0.28, 0.15, 0.25, 0.5],
@@ -40,7 +41,7 @@
       iconRing: 0.3,
       iconWait: 0.1,
       nameRing: 0.3,
-      nameWait: 0.1,
+      nameWait: 0,
       ruler: 0.6,
       rulerText: 0.4
     };
@@ -76,9 +77,11 @@
     function beginAnimation(){
       frame = 0;
       animStage = 0;
-      isAnimationFinished = false;
       cc.clearRect(0, 0, canvas.width, canvas.height);
-      renderLoop();
+      if (isAnimationFinished == true) {
+        isAnimationFinished = false;
+        renderLoop();
+      }
     }
 
     function renderLoop(){
@@ -96,9 +99,9 @@
       arcStep = 0.0294*drawWidth; //22
 
       //绘制背景
-      cc.globalAlpha = 1;
-      cc.fillStyle = "#26273F";
-      cc.fillRect(0, 0, canvas.width, canvas.height);
+      // cc.globalAlpha = 1;
+      // cc.fillStyle = "#26273F";
+      // cc.fillRect(0, 0, canvas.width, canvas.height);
 
       if (animStage>0) {
         if (animStage > 1) {
