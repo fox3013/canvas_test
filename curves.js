@@ -1,5 +1,3 @@
-
-
 Curves = {
   // no easing, no acceleration
   linear: function (t) { return t },
@@ -82,15 +80,24 @@ Curves = {
 		if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*1-s)*(2*Math.PI)/p ));
 		return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t-s)*(2*Math.PI)/p )*.5 + 1;
 	},
-	easeInBack: function (t, s=1.70158) {
+	easeInBack: function (t, s) {
+    if (s === undefined) {
+      s=1.70158;
+    }
     if ( t == 1) return 1;
 		return t*t*((s+1)*t - s);
 	},
-	easeOutBack: function (t, s= 1.70158) {
+	easeOutBack: function (t, s) {
+    if (s === undefined) {
+      s=1.70158;
+    }
     if (t == 0) return 0;
 		return ((t=t/1-1)*t*((s+1)*t + s) + 1);
 	},
-	easeInOutBack: function (t, s= 1.70158) {
+	easeInOutBack: function (t, s) {
+    if (s === undefined) {
+      s=1.70158;
+    }
 		if ((t/=1/2) < 1) return 1/2*(t*t*(((s*=(1.525))+1)*t - s));
 		return 1/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2);
 	},
