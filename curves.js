@@ -112,4 +112,4 @@ Curves = {
 		if (t < 1/2) return Curves.easeInBounce (t*2) * .5;
 		return Curves.easeOutBounce (t*2-1) * .5 + .5;
 	}
-}
+};
