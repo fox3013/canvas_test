@@ -19,7 +19,7 @@
       <input type="text" id="data3" value = "7300000"><br><br>
       <input type="text" id="data4" value = "4500000"><br><br>
       <input type="text" id="data5" value = "1000000"><br><br>
-      <input type="text" id="data5" value = "3700000"><br><br>
+      <input type="text" id="data6" value = "3700000"><br><br>
     </form>
     <p>
       <button onclick="beginAnimation()">Animate!</button>
@@ -42,13 +42,7 @@
     var imagesSrcs = {imgCore: 'img-core.png', icn0: 'icn-0.png', icn1: 'icn-1.png', icn2: 'icn-2.png', icn3: 'icn-3.png', icn4: 'icn-4.png', icn5: 'icn-5.png', icn6: 'icn-6.png'};
 
 
-    for (var i = 0; i < 7; i++) {
-      var id = "data" + i;
-      if (document.getElementById(id).value >= 0) {
-        data.value[i] = document.getElementById(id).value
-      }
 
-    }
 
     //Animation parameters
     //TODO: 处理动态fps
@@ -65,8 +59,8 @@
       sec4: {invoke: 2.1, duration: 0.8},
       sec5: {invoke: 2.3, duration: 0.8},
       sec6: {invoke: 2.5, duration: 0.8},
-      fan: {invoke: 2.8, duration: 0.8},
-      rulerText: {invoke: 3.2, duration: 0.6}
+      fan: {invoke: 2.9, duration: 0.8},
+      rulerText: {invoke: 3.5, duration: 0.6}
     };
 
     function updateAnimationProgress(){
@@ -96,7 +90,16 @@
         if (progress < 1) {
           animationProgress.finished = false;
         }
-      }
+      };
+    }
+
+    function updateData(){
+      for (var i = 0; i < 7; i++) {
+        var id = "data" + i;
+        if (document.getElementById(id).value >= 0) {
+          data.value[i] = document.getElementById(id).value/6000000
+        }
+      };
     }
 
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -123,7 +126,7 @@
     function beginAnimation(){
       animStartTime = Date.now();
       cc.clearRect(0, 0, canvas.width, canvas.height);
-
+      updateData();
       if (isAnimationFinished) {
         isAnimationFinished = false;
         renderLoop();
