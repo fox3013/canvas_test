@@ -12,6 +12,15 @@
         Does not support canvas
       </canvas>
     </div>
+    <form class="" action="index.html">
+      <input type="text" id="data0" value = "37000000"><br><br>
+      <input type="text" id="data1" value = "18200000"><br><br>
+      <input type="text" id="data2" value = "17400000"><br><br>
+      <input type="text" id="data3" value = "7300000"><br><br>
+      <input type="text" id="data4" value = "4500000"><br><br>
+      <input type="text" id="data5" value = "1000000"><br><br>
+      <input type="text" id="data5" value = "3700000"><br><br>
+    </form>
     <p>
       <button onclick="beginAnimation()">Animate!</button>
     </p>
@@ -26,11 +35,20 @@
     //data
     var data = {
       name: ["CRM管理系统", "4A运维系统", "4A主机操作","应用金库管理日志","BOMC系统", "4A数据库操作","SSO单点登入"],
-      value: [6.3, 1.5, 1, 0.28, 0.15, 0.25, 0.5],
+      value: [6.3, 4.3, 2.1, 1.7, 1.5, 1.2, 2],//[6.3, 1.5, 1, 0.28, 0.15, 0.25, 0.5],
       color: ["#d62e64", "#1b8cc7", "#4b6fb4", "#44b193", "#f2da65", "#9d4c99", "#d85e65"]
     };
     var ruler = ['0', '6,000,000', '12,000,000', '18,000,000', '24,000,000', '30,000,000', '36,000,000'];
     var imagesSrcs = {imgCore: 'img-core.png', icn0: 'icn-0.png', icn1: 'icn-1.png', icn2: 'icn-2.png', icn3: 'icn-3.png', icn4: 'icn-4.png', icn5: 'icn-5.png', icn6: 'icn-6.png'};
+
+
+    for (var i = 0; i < 7; i++) {
+      var id = "data" + i;
+      if (document.getElementById(id).value >= 0) {
+        data.value[i] = document.getElementById(id).value
+      }
+
+    }
 
     //Animation parameters
     //TODO: 处理动态fps
