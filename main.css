@@ -1,92 +1,14 @@
 html, body {
     max-width: 100%;
-    overflow-x: hidden;
+    max-height: 100%
+    overflow: hidden;
 }
-input[type=range] {
-  -webkit-appearance: none;
-  padding: 20px 0;
-  width: 100%;
-  background-color: transparent;
-  display: block;
-  margin: auto;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 1px 1px 1px #000000;
-  background: #3071A9;
-  border-radius: 5px;
-  border: 1px solid #000000;
-}
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000000;
-  border: 1px solid #000000;
-  height: 30px;
-  width: 30px;
-  border-radius: 30px;
-  background: #FFFFFF;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -13px;
-}
-
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 1px 1px 1px #000000;
-  background: #3071A9;
-  border-radius: 5px;
-  border: 1px solid #000000;
-}
-input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #000000;
-  border: 1px solid #000000;
-  height: 46px;
-  width: 47px;
-  border-radius: 32px;
-  background: #FFFFFF;
-  cursor: pointer;
-}
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  background: #3071A9;
-  border: 1px solid #000000;
-  border-radius: 10px;
-  box-shadow: 1px 1px 1px #000000;
-}
-input[type=range]::-ms-fill-upper {
-  background: #3071A9;
-  border: 1px solid #000000;
-  border-radius: 10px;
-  box-shadow: 1px 1px 1px #000000;
-}
-input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #000000;
-  border: 1px solid #000000;
-  height: 46px;
-  width: 47px;
-  border-radius: 32px;
-  background: #FFFFFF;
-  cursor: pointer;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #3071A9;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #3071A9;
+body{
+  width:100%;
+  height:100%;
+  background: #211e32; /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient(60% 55%, 60#2e436e, #211e32); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(60% 55%, #2e436e, #211e32); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(60% 55%, #2e436e, #211e32); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(ellipse closest-corner at 60% 60%, #2e436e, #211e32); /* Standard syntax */
 }

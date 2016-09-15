@@ -6,14 +6,61 @@
     <script type="text/javascript" src="./curves.js"></script>
     <link rel="stylesheet" type="text/css" href="./main.css">
   </head>
-  <body style="width:100%; background-color: #26273F;">
+  <body>
+    <div class="poster">
+      <h2>启明星辰信息安全保障工作汇总</h2>
+      <h3>审计细则</h3>
 
-    <div class="canvas" style="text-align: center; font-family:"Microsoft YaHei", "微软雅黑"">
-      <canvas id="newCanvas" width="900" height="900", style="width:100%; max-width:800px; border:0px solid #d3d3d3;">
-        Does not support canvas
-      </canvas>
+      <div class="canvas" style="text-align: center; font-family:"Microsoft YaHei", "微软雅黑"">
+        <canvas id="newCanvas" width="900" height="900", style="width:100%; max-width:800px; border:0px solid #d3d3d3;">
+          Does not support canvas
+        </canvas>
+      </div>
+
+      <h3>审计结果</h3>
+      <div class="audit">
+        <table>
+          <tr>
+            <td class="desc">
+              审计业务数据
+            </td>
+            <td class="number">
+              500,000,000+
+            </td>
+            <td>
+
+            </td>
+            <td class="desc">
+              模型运算
+            </td>
+            <td class="number">
+              4,000+
+            </td>
+          </tr>
+          <tr>
+            <td class="desc">
+              异常行为
+            </td>
+            <td class="number">
+              16
+            </td>
+            <td>
+
+            </td>
+            <td class="desc">
+              全文检索查询
+            </td>
+            <td class="number">
+              620
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <form class="" action="index.html" style:"">
+
+
+
+    <!-- <form class="" action="index.html" style:"">
       <input type="range" min="0", max = "40000000" id="data0" value = "37000000" style="width: 300px;"><br><br>
       <input type="range" min="0", max = "40000000" id="data1" value = "18200000" style="width: 300px;"><br><br>
       <input type="range" min="0", max = "40000000" id="data2" value = "17400000" style="width: 300px;"><br><br>
@@ -21,10 +68,10 @@
       <input type="range" min="0", max = "40000000" id="data4" value = "4500000" style="width: 300px;"><br><br>
       <input type="range" min="0", max = "40000000" id="data5" value = "1000000" style="width: 300px;"><br><br>
       <input type="range" min="0", max = "40000000" id="data6" value = "3700000" style="width: 300px;"><br><br>
-    </form>
-    <p>
+    </form> -->
+    <!-- <p>
       <button onclick="beginAnimation()", style = "display: block; margin: auto;">Animate!</button>
-    </p>
+    </p> -->
   </body>
 
   <script>
@@ -36,7 +83,7 @@
     //data
     var data = {
       name: ["CRM管理系统", "4A运维系统", "4A主机操作","应用金库管理日志","BOMC系统", "4A数据库操作","SSO单点登入"],
-      value: [6.3, 4.3, 2.1, 1.7, 1.5, 1.2, 2],//[6.3, 1.5, 1, 0.28, 0.15, 0.25, 0.5],
+      value: [6.3, 1.5, 1, 0.28, 0.15, 0.25, 0.5],
       color: ["#d62e64", "#1b8cc7", "#4b6fb4", "#44b193", "#f2da65", "#9d4c99", "#d85e65"]
     };
     var ruler = ['0', '6,000,000', '12,000,000', '18,000,000', '24,000,000', '30,000,000', '36,000,000'];
@@ -97,7 +144,7 @@
     function updateData(){
       for (var i = 0; i < 7; i++) {
         var id = "data" + i;
-        if (document.getElementById(id).value >= 0) {
+        if (document.getElementById(id) && document.getElementById(id).value >= 0) {
           data.value[i] = document.getElementById(id).value/6000000
         }
       };
