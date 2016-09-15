@@ -38,7 +38,7 @@
 
     var animScript = {
       core: {invoke: 0, duration: 0.5},
-      iconRing: {invoke: 0.4, duration: 0.3},
+      iconRing: {invoke: 0.6, duration: 0.3},
       catName: {invoke: 0.9, duration: 0.3},
       sec0: {invoke: 1.3, duration: 0.8},
       sec1: {invoke: 1.5, duration: 0.8},
@@ -292,9 +292,9 @@
       //中部的环
       if (animationProgress.core >= 0) {
         var prog = Math.min(animationProgress.core,1);
-        cc.globalAlpha = prog;
-
-        var coreImgX = centerX - 0.51178*drawWidth;
+        cc.globalAlpha = Curves.easeInQuart(prog);
+        var coreOffset = -Curves.easeInQuad(1-prog)*drawWidth*0.03;
+        var coreImgX = centerX - 0.51178*drawWidth + coreOffset;
         var coreImgY = centerY - 0.3388*drawWidth;
         var coreImgWidth = 0.64267*drawWidth;
         var coreImgHeight = 0.4706*drawWidth;
