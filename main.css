@@ -1,8 +1,14 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 input[type=range] {
   -webkit-appearance: none;
   padding: 20px 0;
   width: 100%;
   background-color: transparent;
+  display: block;
+  margin: auto;
 }
 input[type=range]:focus {
   outline: none;
