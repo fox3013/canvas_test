@@ -48,7 +48,7 @@
       sec5: {invoke: 2.3, duration: 0.8},
       sec6: {invoke: 2.5, duration: 0.8},
       fan: {invoke: 2.8, duration: 0.8},
-      rulerText: {invoke: 3.2, duration: 0.4}
+      rulerText: {invoke: 3.2, duration: 0.6}
     };
 
     function updateAnimationProgress(){
@@ -205,11 +205,11 @@
         cc.fillStyle = 'rgba(255,255,255,0.5)';
         cc.font = "110% STXihei";
         for (var i = 0; i < ruler.length; i++) {
-          reversedIdx = ruler.length - i;
-          singleProg = 1/(ruler.length);
+          var reversedIdx = ruler.length - i;
+          var singleProg = 1/(ruler.length);
+          var alpha = Math.max(0, (rulerTextProg - reversedIdx*singleProg) /singleProg);
+          cc.globalAlpha = Math.min(alpha, 1);
 
-          cc.globalAlpha = Math.min((rulerTextProg - reversedIdx*singleProg) /singleProg, 1);
-          cc.globalAlpha = -1;
           var rulerX = centerX - 0.02*drawWidth;
           var rulerY = centerY - (innerRadius + i*arcStep - 0.0067*drawWidth);
           cc.fillText(ruler[i], rulerX, rulerY);
