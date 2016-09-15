@@ -9,49 +9,82 @@
   <body>
     <div class="poster">
       <h2>启明星辰信息安全保障工作汇总</h2>
-      <h3>审计细则</h3>
+      <h5>审计细则</h5>
 
       <div class="canvas" style="text-align: center; font-family:"Microsoft YaHei", "微软雅黑"">
-        <canvas id="newCanvas" width="900" height="900", style="width:100%; max-width:800px; border:0px solid #d3d3d3;">
+        <canvas id="newCanvas" width="900" height="800", style="width:100%; max-width:800px; border:0px solid #d3d3d3;">
           Does not support canvas
         </canvas>
       </div>
 
-      <h3>审计结果</h3>
+      <h5 class="result">审计结果</h5>
       <div class="audit">
-        <table>
+        <table class="main">
           <tr>
-            <td class="desc">
-              审计业务数据
+            <td class="text">
+              <table class="sub">
+                <tr>
+                  <td class="desc right-align">
+                    审计业务数据
+                  </td>
+                </tr>
+                <tr >
+                  <td class="number right-align">
+                    500,000,000+
+                  </td>
+                </tr>
+              </table>
             </td>
-            <td class="number">
-              500,000,000+
+            <td class="img">
+              <img class="a-result" src="./a-result-0.png" alt="result" />
             </td>
-            <td>
+            <td class="text">
+              <table class="sub">
+                <tr>
+                  <td class="desc left-align">
+                    模型运算
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number left-align">
+                    4,000+
+                  </td>
+                </tr>
+              </table>
+            </td>
 
-            </td>
-            <td class="desc">
-              模型运算
-            </td>
-            <td class="number">
-              4,000+
-            </td>
           </tr>
           <tr>
-            <td class="desc">
-              异常行为
+            <td class="text">
+              <table class="sub">
+                <tr>
+                  <td class="desc right-align">
+                    异常行为
+                  </td>
+                </tr>
+                <tr>
+                  <td class="number right-align">
+                    16
+                  </td>
+                </tr>
+              </table class="sub">
             </td>
-            <td class="number">
-              16
+            <td class="img">
+              <img class="a-result" src="./a-result-1.png" alt="result" />
             </td>
-            <td>
-
-            </td>
-            <td class="desc">
-              全文检索查询
-            </td>
-            <td class="number">
-              620
+            <td class="text">
+              <table class="sub">
+                <tr>
+                  <td class="desc left-align">
+                    全文检索查询
+                  </td>
+                </tr>
+                <tr>
+                  <td  class="number left-align">
+                    620
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>
@@ -76,7 +109,7 @@
 
   <script>
     //常用变量
-    var canvas, cc, centerX, centerY,drawWidth, drawHeight, innerRadius, arcStep, frameRenderer, isAnimationFinished, animStartTime, animationProgress;
+    var canvas, cc, centerX, centerY,dth, drawHeight, innerRadius, arcStep, frameRenderer, isAnimationFinished, animStartTime, animationProgress;
     var angleOffset = -Math.PI/2.0;
     var sectionAngle = Math.PI/5.0;
     var pieAngle = sectionAngle*7.0;
@@ -162,7 +195,7 @@
 
       centerX = canvas.width / 2.0;
       centerY = canvas.height / 2.0;
-      drawWidth = canvas.width*0.8;
+      drawWidth = canvas.width*0.87;
       drawHeight = canvas.height*0.8;
 
       loadImages(imagesSrcs, function(images) {

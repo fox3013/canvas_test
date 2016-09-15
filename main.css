@@ -1,9 +1,10 @@
 html, body {
     max-width: 100%;
-    max-height: 100%
+    max-height: 100%;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
+
 }
 body{
   background: #211e32; /* For browsers that do not support gradients */
@@ -11,4 +12,68 @@ body{
   background: -o-radial-gradient(closest-corner 60% 60%, closest-corner, #2e436e, #211e32 90%); /* For Opera 11.6 to 12.0 */
   background: -moz-radial-gradient(closest-corner 60% 60%, closest-corner, #2e436e, #211e32 90%); /* For Firefox 3.6 to 15 */
   background: radial-gradient(ellipse closest-corner at 60% 60%, #2e436e, #211e32 90%); /* Standard syntax */
+  text-align: center;
+  font-family: "DIN", "DINPro","Microsoft YaHei","微软雅黑","黑体",sans-serif;
+  color: white;
+  margin: 0;
+}
+
+h2{
+  padding-top: 10%;
+  font-size: 2.3em;
+  font-weight: normal;
+}
+
+h5{
+  margin: 0;
+  display: inline-block;
+  padding-top: 4%;
+  padding-bottom: 0.7%;
+  width: inherit;
+  font-size: 2.2em;
+  font-weight: normal;
+  opacity: 0.7;
+  border-bottom: 4px solid;
+
+}
+h5.result{
+  padding-top: 0;
+}
+table.main{
+  padding-top: 6%;
+  display: inline-block;
+}
+table.sub{
+  width: 100%;
+}
+td.text{
+  width:30%;
+}
+
+td.desc{
+  font-size: 1.5em;
+  font-weight: lighter;
+  color: rgba(255, 255, 255, .6);
+}
+td.number{
+  font-size: 2.5em;
+}
+td.left-align{
+  text-align: left;
+}
+td.right-align{
+  text-align: right;
+}
+td.img{
+  padding-left: 1%;
+  padding-right: 1%;
+  width: 20%;
+}
+
+img.a-result{
+  margin: 0;
+  padding: 0;
+  width:100%;
+  display: inline-block;
+  text-align: center;
 }
