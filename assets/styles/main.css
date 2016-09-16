@@ -116,14 +116,6 @@ img.a-result{
 .fadeUpIn{
   opacity: 0;
 }
-for (var i = 0; i< 101; i++){
-  console.log("  " + i + "% {");
-  console.log("    -ms-transform: scale(" + Curves.easeInOutBounce(i/100) + ")");
-  console.log("    -webkit-transform: scale(" + Curves.easeInOutBounce(i/100) + ")");
-  console.log("    transform: scale(" + Curves.easeInOutBounce(i/100) + ")");
-  console.log("    opacity:" +i/100+")");
-  console.log("}");
-}
 
 @keyframes popIn {
   0% {
