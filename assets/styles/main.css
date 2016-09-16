@@ -98,7 +98,7 @@ img.a-result{
   -ms-transform: translateY(10px); /* IE 9 */
   -webkit-transform: translateY(10px); /* Safari */
   transform: translateY(10px);
-  animation: fadeInTitle .5s ease-in 0.5s 1 forwards;
+  animation: fadeIn .5s ease-in 0.5s 1 forwards;
 
 }
 .fadeUpInDo.number {
@@ -106,7 +106,7 @@ img.a-result{
 }
 
 .fadeUpInDo.img{
-  animation: fadeInTitle .5s ease-in 1.5s 1 forwards;
+  animation: fadeIn .5s ease-in 1.5s 1 forwards;
 }
 
 .fadeUpIn{
