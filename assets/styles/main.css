@@ -102,11 +102,11 @@ img.a-result{
 
 }
 .fadeUpInDo.number {
-  animation: fadeIn .5s ease-in 1s 1 forwards;
+  animation: fadeIn .5s ease-in 1.3s 1 forwards;
 }
 
 .fadeUpInDo.img{
-  animation: fadeIn .5s ease-in 1.5s 1 forwards;
+  animation: fadeIn .5s ease-in 1.8s 1 forwards;
 }
 
 .fadeUpIn{
