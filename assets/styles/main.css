@@ -88,6 +88,20 @@ img.a-result{
     transform: translateY(0px);
   }
 }
+@keyframes popIn {
+  from {
+    -ms-transform: scale(0.8,0.8); /* IE 9 */
+   -webkit-transform: scale(0.8,0.8); /* Safari */
+   transform: scale(0.8, 0.8);
+   opacity: 0;
+  }
+  to {
+    -ms-transform: scale(1, 1); /* IE 9 */
+   -webkit-transform: scale(1, 1); /* Safari */
+   transform: scale(1, 1);
+   opacity: 1;
+  }
+}
 .fadeUpInDo.result{
   -ms-transform: translateY(10px); /* IE 9 */
   -webkit-transform: translateY(10px); /* Safari */
@@ -105,8 +119,11 @@ img.a-result{
   animation: fadeIn .5s ease-in 1.3s 1 forwards;
 }
 
-.fadeUpInDo.img{
-  animation: fadeIn .5s ease-in 1.8s 1 forwards;
+.fadeUpInDo.img0{
+  animation: popIn .5s cubic-bezier(.33,-1.11,.31,1.71) 1.8s 1 forwards;
+}
+.fadeUpInDo.img1{
+  animation: popIn .5s cubic-bezier(.33,-1.11,.31,1.71) 2.0s 1 forwards;
 }
 
 .fadeUpIn{
