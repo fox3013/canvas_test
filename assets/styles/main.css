@@ -88,20 +88,7 @@ img.a-result{
     transform: translateY(0px);
   }
 }
-@keyframes popIn {
-  from {
-    -ms-transform: scale(0.8,0.8); /* IE 9 */
-   -webkit-transform: scale(0.8,0.8); /* Safari */
-   transform: scale(0.8, 0.8);
-   opacity: 0;
-  }
-  to {
-    -ms-transform: scale(1, 1); /* IE 9 */
-   -webkit-transform: scale(1, 1); /* Safari */
-   transform: scale(1, 1);
-   opacity: 1;
-  }
-}
+
 .fadeUpInDo.result{
   -ms-transform: translateY(10px); /* IE 9 */
   -webkit-transform: translateY(10px); /* Safari */
@@ -120,12 +107,629 @@ img.a-result{
 }
 
 .fadeUpInDo.img0{
-  animation: popIn .5s cubic-bezier(.33,-1.11,.31,1.71) 1.8s 1 forwards;
+  animation: popIn .5s linear 1.8s 1 forwards;
 }
 .fadeUpInDo.img1{
-  animation: popIn .5s cubic-bezier(.33,-1.11,.31,1.71) 2.0s 1 forwards;
+  animation: popIn .5s linear 2.0s 1 forwards;
 }
 
 .fadeUpIn{
   opacity: 0;
+}
+for (var i = 0; i< 101; i++){
+  console.log("  " + i + "% {");
+  console.log("    -ms-transform: scale(" + Curves.easeInOutBounce(i/100) + ")");
+  console.log("    -webkit-transform: scale(" + Curves.easeInOutBounce(i/100) + ")");
+  console.log("    transform: scale(" + Curves.easeInOutBounce(i/100) + ")");
+  console.log("    opacity:" +i/100+")");
+  console.log("}");
+}
+
+@keyframes popIn {
+  0% {
+    -ms-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  1% {
+    -ms-transform: scale(0.702591292772093);
+    -webkit-transform: scale(0.702591292772093);
+    transform: scale(0.702591292772093);
+    opacity: 0.01;
+  }
+  2% {
+    -ms-transform: scale(0.709926628760566);
+    -webkit-transform: scale(0.709926628760566);
+    transform: scale(0.709926628760566);
+    opacity: 0.02;
+  }
+  3% {
+    -ms-transform: scale(0.721345318887809);
+    -webkit-transform: scale(0.721345318887809);
+    transform: scale(0.721345318887809);
+    opacity: 0.03;
+  }
+  4% {
+    -ms-transform: scale(0.736192226869552);
+    -webkit-transform: scale(0.736192226869552);
+    transform: scale(0.736192226869552);
+    opacity: 0.04;
+  }
+  5% {
+    -ms-transform: scale(0.75382823696733);
+    -webkit-transform: scale(0.75382823696733);
+    transform: scale(0.75382823696733);
+    opacity: 0.05;
+  }
+  6% {
+    -ms-transform: scale(0.773639266192989);
+    -webkit-transform: scale(0.773639266192989);
+    transform: scale(0.773639266192989);
+    opacity: 0.06;
+  }
+  7% {
+    -ms-transform: scale(0.795043834862598);
+    -webkit-transform: scale(0.795043834862598);
+    transform: scale(0.795043834862598);
+    opacity: 0.07;
+  }
+  8% {
+    -ms-transform: scale(0.81749922786577);
+    -webkit-transform: scale(0.81749922786577);
+    transform: scale(0.81749922786577);
+    opacity: 0.08;
+  }
+  9% {
+    -ms-transform: scale(0.840506302337607);
+    -webkit-transform: scale(0.840506302337607);
+    transform: scale(0.840506302337607);
+    opacity: 0.09;
+  }
+  10% {
+    -ms-transform: scale(0.86361301505445);
+    -webkit-transform: scale(0.86361301505445);
+    transform: scale(0.86361301505445);
+    opacity: 0.1;
+  }
+  11% {
+    -ms-transform: scale(0.886416751681765);
+    -webkit-transform: scale(0.886416751681765);
+    transform: scale(0.886416751681765);
+    opacity: 0.11;
+  }
+  12% {
+    -ms-transform: scale(0.908565557204573);
+    -webkit-transform: scale(0.908565557204573);
+    transform: scale(0.908565557204573);
+    opacity: 0.12;
+  }
+  13% {
+    -ms-transform: scale(0.929758367356495);
+    -webkit-transform: scale(0.929758367356495);
+    transform: scale(0.929758367356495);
+    opacity: 0.13;
+  }
+  14% {
+    -ms-transform: scale(0.949744353272992);
+    -webkit-transform: scale(0.949744353272992);
+    transform: scale(0.949744353272992);
+    opacity: 0.14;
+  }
+  15% {
+    -ms-transform: scale(0.968321489362955);
+    -webkit-transform: scale(0.968321489362955);
+    transform: scale(0.968321489362955);
+    opacity: 0.15;
+  }
+  16% {
+    -ms-transform: scale(0.985334455621811);
+    -webkit-transform: scale(0.985334455621811);
+    transform: scale(0.985334455621811);
+    opacity: 0.16;
+  }
+  17% {
+    -ms-transform: scale(1.000671987504379);
+    -webkit-transform: scale(1.000671987504379);
+    transform: scale(1.000671987504379);
+    opacity: 0.17;
+  }
+  18% {
+    -ms-transform: scale(1.014263777920404);
+    -webkit-transform: scale(1.014263777920404);
+    transform: scale(1.014263777920404);
+    opacity: 0.18;
+  }
+  19% {
+    -ms-transform: scale(1.026077037087954);
+    -webkit-transform: scale(1.026077037087954);
+    transform: scale(1.026077037087954);
+    opacity: 0.19;
+  }
+  20% {
+    -ms-transform: scale(1.036112804825978);
+    -webkit-transform: scale(1.036112804825978);
+    transform: scale(1.036112804825978);
+    opacity: 0.2;
+  }
+  21% {
+    -ms-transform: scale(1.044402108182517);
+    -webkit-transform: scale(1.044402108182517);
+    transform: scale(1.044402108182517);
+    opacity: 0.21;
+  }
+  22% {
+    -ms-transform: scale(1.051002044661534);
+    -webkit-transform: scale(1.051002044661534);
+    transform: scale(1.051002044661534);
+    opacity: 0.22;
+  }
+  23% {
+    -ms-transform: scale(1.055991867120973);
+    -webkit-transform: scale(1.055991867120973);
+    transform: scale(1.055991867120973);
+    opacity: 0.23;
+  }
+  24% {
+    -ms-transform: scale(1.0594691361585);
+    -webkit-transform: scale(1.0594691361585);
+    transform: scale(1.0594691361585);
+    opacity: 0.24;
+  }
+  25% {
+    -ms-transform: scale(1.061545997921221);
+    -webkit-transform: scale(1.061545997921221);
+    transform: scale(1.061545997921221);
+    opacity: 0.25;
+  }
+  26% {
+    -ms-transform: scale(1.0623456347794);
+    -webkit-transform: scale(1.0623456347794);
+    transform: scale(1.0623456347794);
+    opacity: 0.26;
+  }
+  27% {
+    -ms-transform: scale(1.061998931695329);
+    -webkit-transform: scale(1.061998931695329);
+    transform: scale(1.061998931695329);
+    opacity: 0.27;
+  }
+  28% {
+    -ms-transform: scale(1.060641388188453);
+    -webkit-transform: scale(1.060641388188453);
+    transform: scale(1.060641388188453);
+    opacity: 0.28;
+  }
+  29% {
+    -ms-transform: scale(1.058410301557493);
+    -webkit-transform: scale(1.058410301557493);
+    transform: scale(1.058410301557493);
+    opacity: 0.29;
+  }
+  30% {
+    -ms-transform: scale(1.055442238464959);
+    -webkit-transform: scale(1.055442238464959);
+    transform: scale(1.055442238464959);
+    opacity: 0.3;
+  }
+  31% {
+    -ms-transform: scale(1.051870804500443);
+    -webkit-transform: scale(1.051870804500443);
+    transform: scale(1.051870804500443);
+    opacity: 0.31;
+  }
+  32% {
+    -ms-transform: scale(1.047824716081605);
+    -webkit-transform: scale(1.047824716081605);
+    transform: scale(1.047824716081605);
+    opacity: 0.32;
+  }
+  33% {
+    -ms-transform: scale(1.043426173605011);
+    -webkit-transform: scale(1.043426173605011);
+    transform: scale(1.043426173605011);
+    opacity: 0.33;
+  }
+  34% {
+    -ms-transform: scale(1.038789528252798);
+    -webkit-transform: scale(1.038789528252798);
+    transform: scale(1.038789528252798);
+    opacity: 0.34;
+  }
+  35% {
+    -ms-transform: scale(1.034020233170204);
+    -webkit-transform: scale(1.034020233170204);
+    transform: scale(1.034020233170204);
+    opacity: 0.35;
+  }
+  36% {
+    -ms-transform: scale(1.029214063630678);
+    -webkit-transform: scale(1.029214063630678);
+    transform: scale(1.029214063630678);
+    opacity: 0.36;
+  }
+  37% {
+    -ms-transform: scale(1.024456589003751);
+    -webkit-transform: scale(1.024456589003751);
+    transform: scale(1.024456589003751);
+    opacity: 0.37;
+  }
+  38% {
+    -ms-transform: scale(1.019822877940746);
+    -webkit-transform: scale(1.019822877940746);
+    transform: scale(1.019822877940746);
+    opacity: 0.38;
+  }
+  39% {
+    -ms-transform: scale(1.015377414256413);
+    -webkit-transform: scale(1.015377414256413);
+    transform: scale(1.015377414256413);
+    opacity: 0.39;
+  }
+  40% {
+    -ms-transform: scale(1.011174201613617);
+    -webkit-transform: scale(1.011174201613617);
+    transform: scale(1.011174201613617);
+    opacity: 0.4;
+  }
+  41% {
+    -ms-transform: scale(1.0072570341236);
+    -webkit-transform: scale(1.0072570341236);
+    transform: scale(1.0072570341236);
+    opacity: 0.41;
+  }
+  42% {
+    -ms-transform: scale(1.003659909162429);
+    -webkit-transform: scale(1.003659909162429);
+    transform: scale(1.003659909162429);
+    opacity: 0.42;
+  }
+  43% {
+    -ms-transform: scale(1.000407559159358);
+    -webkit-transform: scale(1.000407559159358);
+    transform: scale(1.000407559159358);
+    opacity: 0.43;
+  }
+  44% {
+    -ms-transform: scale(0.997516080598993);
+    -webkit-transform: scale(0.997516080598993);
+    transform: scale(0.997516080598993);
+    opacity: 0.44;
+  }
+  45% {
+    -ms-transform: scale(0.994993637904955);
+    -webkit-transform: scale(0.994993637904955);
+    transform: scale(0.994993637904955);
+    opacity: 0.45;
+  }
+  46% {
+    -ms-transform: scale(0.992841222038926);
+    -webkit-transform: scale(0.992841222038926);
+    transform: scale(0.992841222038926);
+    opacity: 0.46;
+  }
+  47% {
+    -ms-transform: scale(0.991053444976338);
+    -webkit-transform: scale(0.991053444976338);
+    transform: scale(0.991053444976338);
+    opacity: 0.47;
+  }
+  48% {
+    -ms-transform: scale(0.989619352239257);
+    -webkit-transform: scale(0.989619352239257);
+    transform: scale(0.989619352239257);
+    opacity: 0.48;
+  }
+  49% {
+    -ms-transform: scale(0.988523237927707);
+    -webkit-transform: scale(0.988523237927707);
+    transform: scale(0.988523237927707);
+    opacity: 0.49;
+  }
+  50% {
+    -ms-transform: scale(0.987745447929049);
+    -webkit-transform: scale(0.987745447929049);
+    transform: scale(0.987745447929049);
+    opacity: 0.5;
+  }
+  51% {
+    -ms-transform: scale(0.98726315937082);
+    -webkit-transform: scale(0.98726315937082);
+    transform: scale(0.98726315937082);
+    opacity: 0.51;
+  }
+  52% {
+    -ms-transform: scale(0.987051125376484);
+    -webkit-transform: scale(0.987051125376484);
+    transform: scale(0.987051125376484);
+    opacity: 0.52;
+  }
+  53% {
+    -ms-transform: scale(0.987082376817779);
+    -webkit-transform: scale(0.987082376817779);
+    transform: scale(0.987082376817779);
+    opacity: 0.53;
+  }
+  54% {
+    -ms-transform: scale(0.987328873793873);
+    -webkit-transform: scale(0.987328873793873);
+    transform: scale(0.987328873793873);
+    opacity: 0.54;
+  }
+  55% {
+    -ms-transform: scale(0.987762101664528);
+    -webkit-transform: scale(0.987762101664528);
+    transform: scale(0.987762101664528);
+    opacity: 0.55;
+  }
+  56% {
+    -ms-transform: scale(0.988353607628316);
+    -webkit-transform: scale(0.988353607628316);
+    transform: scale(0.988353607628316);
+    opacity: 0.56;
+  }
+  57% {
+    -ms-transform: scale(0.989075475624037);
+    -webkit-transform: scale(0.989075475624037);
+    transform: scale(0.989075475624037);
+    opacity: 0.57;
+  }
+  58% {
+    -ms-transform: scale(0.989900738456648);
+    -webkit-transform: scale(0.989900738456648);
+    transform: scale(0.989900738456648);
+    opacity: 0.58;
+  }
+  59% {
+    -ms-transform: scale(0.990803727221652);
+    -webkit-transform: scale(0.990803727221652);
+    transform: scale(0.990803727221652);
+    opacity: 0.59;
+  }
+  60% {
+    -ms-transform: scale(0.991760359238182);
+    -webkit-transform: scale(0.991760359238182);
+    transform: scale(0.991760359238182);
+    opacity: 0.6;
+  }
+  61% {
+    -ms-transform: scale(0.992748366544657);
+    -webkit-transform: scale(0.992748366544657);
+    transform: scale(0.992748366544657);
+    opacity: 0.61;
+  }
+  62% {
+    -ms-transform: scale(0.993747467841823);
+    -webkit-transform: scale(0.993747467841823);
+    transform: scale(0.993747467841823);
+    opacity: 0.62;
+  }
+  63% {
+    -ms-transform: scale(0.994739487335421);
+    -webkit-transform: scale(0.994739487335421);
+    transform: scale(0.994739487335421);
+    opacity: 0.63;
+  }
+  64% {
+    -ms-transform: scale(0.995708424497715);
+    -webkit-transform: scale(0.995708424497715);
+    transform: scale(0.995708424497715);
+    opacity: 0.64;
+  }
+  65% {
+    -ms-transform: scale(0.996640479036013);
+    -webkit-transform: scale(0.996640479036013);
+    transform: scale(0.996640479036013);
+    opacity: 0.65;
+  }
+  66% {
+    -ms-transform: scale(0.997524035881202);
+    -webkit-transform: scale(0.997524035881202);
+    transform: scale(0.997524035881202);
+    opacity: 0.66;
+  }
+  67% {
+    -ms-transform: scale(0.998349614760514);
+    -webkit-transform: scale(0.998349614760514);
+    transform: scale(0.998349614760514);
+    opacity: 0.67;
+  }
+  68% {
+    -ms-transform: scale(0.99910978936117);
+    -webkit-transform: scale(0.99910978936117);
+    transform: scale(0.99910978936117);
+    opacity: 0.68;
+  }
+  69% {
+    -ms-transform: scale(0.999799080866146);
+    -webkit-transform: scale(0.999799080866146);
+    transform: scale(0.999799080866146);
+    opacity: 0.69;
+  }
+  70% {
+    -ms-transform: scale(1.000413830503704);
+    -webkit-transform: scale(1.000413830503704);
+    transform: scale(1.000413830503704);
+    opacity: 0.7;
+  }
+  71% {
+    -ms-transform: scale(1.000952055723486);
+    -webkit-transform: scale(1.000952055723486);
+    transform: scale(1.000952055723486);
+    opacity: 0.71;
+  }
+  72% {
+    -ms-transform: scale(1.001413294208189);
+    -webkit-transform: scale(1.001413294208189);
+    transform: scale(1.001413294208189);
+    opacity: 0.72;
+  }
+  73% {
+    -ms-transform: scale(1.001798439808136);
+    -webkit-transform: scale(1.001798439808136);
+    transform: scale(1.001798439808136);
+    opacity: 0.73;
+  }
+  74% {
+    -ms-transform: scale(1.002109574048473);
+    -webkit-transform: scale(1.002109574048473);
+    transform: scale(1.002109574048473);
+    opacity: 0.74;
+  }
+  75% {
+    -ms-transform: scale(1.002349796567128);
+    -webkit-transform: scale(1.002349796567128);
+    transform: scale(1.002349796567128);
+    opacity: 0.75;
+  }
+  76% {
+    -ms-transform: scale(1.002523057494295);
+    -webkit-transform: scale(1.002523057494295);
+    transform: scale(1.002523057494295);
+    opacity: 0.76;
+  }
+  77% {
+    -ms-transform: scale(1.002633994377045);
+    -webkit-transform: scale(1.002633994377045);
+    transform: scale(1.002633994377045);
+    opacity: 0.77;
+  }
+  78% {
+    -ms-transform: scale(1.002687775902872);
+    -webkit-transform: scale(1.002687775902872);
+    transform: scale(1.002687775902872);
+    opacity: 0.78;
+  }
+  79% {
+    -ms-transform: scale(1.002689954303722);
+    -webkit-transform: scale(1.002689954303722);
+    transform: scale(1.002689954303722);
+    opacity: 0.79;
+  }
+  80% {
+    -ms-transform: scale(1.002646327934134);
+    -webkit-transform: scale(1.002646327934134);
+    transform: scale(1.002646327934134);
+    opacity: 0.8;
+  }
+  81% {
+    -ms-transform: scale(1.002562815255761);
+    -webkit-transform: scale(1.002562815255761);
+    transform: scale(1.002562815255761);
+    opacity: 0.81;
+  }
+  82% {
+    -ms-transform: scale(1.002445341004323);
+    -webkit-transform: scale(1.002445341004323);
+    transform: scale(1.002445341004323);
+    opacity: 0.82;
+  }
+  83% {
+    -ms-transform: scale(1.002299735140874);
+    -webkit-transform: scale(1.002299735140874);
+    transform: scale(1.002299735140874);
+    opacity: 0.83;
+  }
+  84% {
+    -ms-transform: scale(1.002131644830498);
+    -webkit-transform: scale(1.002131644830498);
+    transform: scale(1.002131644830498);
+    opacity: 0.84;
+  }
+  85% {
+    -ms-transform: scale(1.001946459465636);
+    -webkit-transform: scale(1.001946459465636);
+    transform: scale(1.001946459465636);
+    opacity: 0.85;
+  }
+  86% {
+    -ms-transform: scale(1.001749248538513);
+    -webkit-transform: scale(1.001749248538513);
+    transform: scale(1.001749248538513);
+    opacity: 0.86;
+  }
+  87% {
+    -ms-transform: scale(1.001544711959241);
+    -webkit-transform: scale(1.001544711959241);
+    transform: scale(1.001544711959241);
+    opacity: 0.87;
+  }
+  88% {
+    -ms-transform: scale(1.001337142243376);
+    -webkit-transform: scale(1.001337142243376);
+    transform: scale(1.001337142243376);
+    opacity: 0.88;
+  }
+  89% {
+    -ms-transform: scale(1.001130397884649);
+    -webkit-transform: scale(1.001130397884649);
+    transform: scale(1.001130397884649);
+    opacity: 0.89;
+  }
+  90% {
+    -ms-transform: scale(1.000927887077737);
+    -webkit-transform: scale(1.000927887077737);
+    transform: scale(1.000927887077737);
+    opacity: 0.9;
+  }
+  91% {
+    -ms-transform: scale(1.000732560923137);
+    -webkit-transform: scale(1.000732560923137);
+    transform: scale(1.000732560923137);
+    opacity: 0.91;
+  }
+  92% {
+    -ms-transform: scale(1.000546915126477);
+    -webkit-transform: scale(1.000546915126477);
+    transform: scale(1.000546915126477);
+    opacity: 0.92;
+  }
+  93% {
+    -ms-transform: scale(1.000372999228494);
+    -webkit-transform: scale(1.000372999228494);
+    transform: scale(1.000372999228494);
+    opacity: 0.93;
+  }
+  94% {
+    -ms-transform: scale(1.000212432347201);
+    -webkit-transform: scale(1.000212432347201);
+    transform: scale(1.000212432347201);
+    opacity: 0.94;
+  }
+  95% {
+    -ms-transform: scale(1.000066424424848);
+    -webkit-transform: scale(1.000066424424848);
+    transform: scale(1.000066424424848);
+    opacity: 0.95;
+  }
+  96% {
+    -ms-transform: scale(0.999935802005782);
+    -webkit-transform: scale(0.999935802005782);
+    transform: scale(0.999935802005782);
+    opacity: 0.96;
+  }
+  97% {
+    -ms-transform: scale(0.999821037593962);
+    -webkit-transform: scale(0.999821037593962);
+    transform: scale(0.999821037593962);
+    opacity: 0.97;
+  }
+  98% {
+    -ms-transform: scale(0.999722281681844);
+    -webkit-transform: scale(0.999722281681844);
+    transform: scale(0.999722281681844);
+    opacity: 0.98;
+  }
+  99% {
+    -ms-transform: scale(0.9996393966166);
+    -webkit-transform: scale(0.9996393966166);
+    transform: scale(0.9996393966166);
+    opacity: 0.99;
+  }
+  100% {
+    -ms-transform: scale(0.999571991514564);
+    -webkit-transform: scale(0.999571991514564);
+    transform: scale(0.999571991514564);
+    opacity: 1;
+  }
 }
