@@ -13,8 +13,6 @@ var ruler = ['0', '6,000,000', '12,000,000', '18,000,000', '24,000,000', '30,000
 var imagesSrcs = {imgCore: 'img-core.png', icn0: 'icn-0.png', icn1: 'icn-1.png', icn2: 'icn-2.png', icn3: 'icn-3.png', icn4: 'icn-4.png', icn5: 'icn-5.png', icn6: 'icn-6.png'};
 
 
-
-
 //Animation parameters
 //TODO: 处理动态fps
 var fps = 60.0;
@@ -66,9 +64,9 @@ function updateAnimationProgress(){
 
 function updateData(){
   for (var i = 0; i < 7; i++) {
-    var id = "data" + i;
-    if (document.getElementById(id) && document.getElementById(id).value >= 0) {
-      data.value[i] = document.getElementById(id).value/6000000
+    var id = "input#data" + i;
+    if ($(id).count>0 && $(id).value >= 0) {
+      data.value[i] = document.getElementById(id).value/6000000;
     }
   };
 }
@@ -108,6 +106,8 @@ function renderLoop(){
   if (!isAnimationFinished) {
     drawData();
     frameRenderer = requestAnimationFrame(renderLoop);
+  }else {
+    $(".fadeUpIn").addClass("fadeUpInDo");
   }
 }
 
