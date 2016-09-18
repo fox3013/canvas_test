@@ -110,7 +110,7 @@ img.a-result{
   animation: popIn .5s linear 1.8s 1 forwards;
 }
 .fadeUpInDo.img1{
-  animation: popIn .5s linear 2.0s 1 forwards;
+  animation: fadeIn .5s linear 2.3s 1 forwards;
 }
 
 .fadeUpIn{

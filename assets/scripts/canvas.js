@@ -1,5 +1,6 @@
 //常用变量
 var canvas, cc, centerX, centerY,dth, drawHeight, innerRadius, arcStep, frameRenderer, isAnimationFinished, animStartTime, animationProgress;
+var snap1, snap2, drop, circ1, circ2, o1, o2;
 var angleOffset = -Math.PI/2.0;
 var sectionAngle = Math.PI/5.0;
 var pieAngle = sectionAngle*7.0;
@@ -86,6 +87,11 @@ window.onload = function(){
   drawWidth = canvas.width*0.87;
   drawHeight = canvas.height*0.8;
 
+  drawDots();
+  drop.attr({
+    fill: "#0B8BC7",
+  })
+
   loadImages(imagesSrcs, function(images) {
     loadedImages = images;
     beginAnimation();
@@ -108,6 +114,8 @@ function renderLoop(){
     frameRenderer = requestAnimationFrame(renderLoop);
   }else {
     $(".fadeUpIn").addClass("fadeUpInDo");
+    setTimeout(function(){playDropAnim()},2200);
+    setTimeout(function(){playDotAnim(circ1, circ2)},2500);
   }
 }
 
@@ -301,7 +309,48 @@ function drawData(){
   }
 }
 
+function drawDots(){
+  snap1 = Snap("#snap1");
+  var width = 440;
+  var height = 220;
+  snap1.attr({ viewBox: "0 0 " + width + " " +height })
+  dpath1 = "M205,67A98,98,0,1,0,205,154C205,154,211,142,211,142A98,98,0,0,0,211,81C211,81,205,67,205,67Z";
+  drop = snap1.path(dpath1);
+  //circ1.transform("s.4");
 
+  snap2 = Snap("#snap2");
+  snap2.attr({ viewBox: "0 0 " + width + " " +height })
+  var paddingLeft = (width - width/1.2)/2;
+  var paddingRight = paddingLeft;
+  var r1 = 0.18*width;
+  var r2 = r1*0.5858;
+  o1 = {x: paddingLeft + r1, y: height*0.5};
+  o2 = {x: width - paddingRight - r2, y: height*0.5}
+  circ1 = snap2.circle(o1.x,o1.y, r1);
+  circ2 = snap2.circle(o2.x,o2.y, r2);
+  circ1.attr({
+    fill: "#d63464",
+  });
+  circ2.attr({
+    fill: "#d63464"
+  });
+  circ1.transform("s.0");
+  circ2.transform("s.0");
+}
+
+function playDropAnim(ele){
+  dpath2 = "M205,67A98,98,0,1,0,205,154C210,150,270,90,329,140A48,48,0,1,0,329,81C270,131,210,71,205,67";
+  drop.animate({d: dpath2}, 800, mina.elastic);
+
+}
+
+function playDotAnim(c1, c2){
+  c1.animate({transform: "s1,"+ o1.x + "," + o1.y}, 400, Curves.easeOutElastic, function(){
+    c2.animate({transform:"s1," + (o2.x-o1.x) + "," + (o2.y-o1.y) + "s1," + o2.x + "," + o2.y} , 400, Curves.easeOutElastic, function(){
+
+    });
+  });
+}
 
 //图像载入
 function loadImages(sources, callback) {
@@ -323,6 +372,7 @@ function loadImages(sources, callback) {
       images[src].src = url;
     }
   }
+
 
 
 //圆形文字绘制（类别名称）
