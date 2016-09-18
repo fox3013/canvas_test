@@ -64,6 +64,7 @@ td.right-align{
 td.img{
   padding-left: 1%;
   padding-right: 1%;
+  max-height: 156px;
   width: 20%;
 }
 
