@@ -72,6 +72,10 @@ Curves = {
 		else var s = p/(2*Math.PI) * Math.asin (1/a);
 		return a*Math.pow(2,-10*t) * Math.sin( (t-s)*(2*Math.PI)/p ) + 1;
 	},
+  easeOutElasticMin: function (t) {
+		var e=2.71828;
+    return -0.5*Math.pow(e, -6*t)*(-2*Math.pow(e, 6*t)+Math.sin(10*t) + 2*Math.cos(10*t));
+	},
 	easeInOutElastic: function (t) {
 		var s=1.70158;var p=0;var a=1;
 		if (t==0) return 0;  if ((t/=1/2)==2) return 1;  if (!p) p=1*(.3*1.5);

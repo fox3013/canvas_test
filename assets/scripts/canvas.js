@@ -340,7 +340,7 @@ function drawDots(){
 
 function playDropAnim(ele){
   dpath2 = "M205,67A98,98,0,1,0,205,154C210,150,270,90,329,140A48,48,0,1,0,329,81C270,131,210,71,205,67";
-  drop.animate({d: dpath2}, 800, mina.elastic);
+  drop.animate({d: dpath2}, 800, Curves.easeOutElasticMin);
 
 }
 
